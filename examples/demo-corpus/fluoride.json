@@ -1,0 +1,29 @@
+{
+  "nutrient": {
+    "id": "0291c7ef-13e0-4740-a669-a1aca1b9655c",
+    "name": "Fluoride"
+  },
+  "citations": [
+    {
+      "id": "pmid:39362658",
+      "title": "Water fluoridation for the prevention of dental caries",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39362658/",
+      "pmid": "39362658",
+      "year": 2024,
+      "source": "demo_fixture",
+      "retrieval_query": "fluoride dental caries prevention systematic review",
+      "abstract": "Demo abstract intentionally not used by the validator.",
+      "body_text": "Results: Water fluoridation probably reduces caries experience in children, although the magnitude of benefit is smaller in contemporary studies than in older studies. Discussion: The certainty of evidence varies by outcome, population, baseline caries risk, and availability of fluoride from other sources."
+    },
+    {
+      "id": "demo:unsupported-fluoride",
+      "title": "Unsupported demo claim fixture",
+      "url": "https://example.org/unsupported-fluoride-demo",
+      "year": 2026,
+      "source": "demo_fixture",
+      "retrieval_query": "fluoride unrelated unsupported demo",
+      "abstract": "Demo abstract intentionally not used by the validator.",
+      "body_text": "This body text discusses general mineral exposure and contains no support for the proposed unsupported claim."
+    }
+  ]
+}
