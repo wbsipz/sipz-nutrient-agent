@@ -34,6 +34,37 @@ uv run sipz-agent audit --run research_runs/<created-run-dir>
 uv run sipz-agent export --run research_runs/<created-run-dir> --format csv
 ```
 
+The package also exposes the longer command alias:
+
+```bash
+uv run sipz-nutrient-agent study "fluoride" --demo
+```
+
+## LLM Provider Scaffolding
+
+The deterministic MVP still uses bundled demo fixtures for retrieval/extraction, but the CLI now accepts provider configuration so live LLM-backed steps can be added behind the same interface.
+
+For DeepSeek, create a local `.env` file or export the key in your shell:
+
+```bash
+DEEPSEEK_API_KEY=sk-...
+```
+
+Then run with:
+
+```bash
+uv run sipz-nutrient-agent study "fluoride" --demo --provider deepseek
+```
+
+Useful model overrides:
+
+```bash
+uv run sipz-nutrient-agent study "fluoride" --demo --provider deepseek --model deepseek-chat
+uv run sipz-nutrient-agent study "fluoride" --demo --provider deepseek --model deepseek-reasoner
+```
+
+The provider metadata is recorded in `packet.json`. Live candidate-paper retrieval is now implemented for PubMed, Europe PMC, OpenAlex, Semantic Scholar, Crossref, and optional Firecrawl supplemental search. Arbitrary nutrients such as `magnesium` can collect real `sources.json` records, but LLM-backed claim extraction/validation is still a later step, so live runs may produce zero `effects.csv` rows until that stage is implemented.
+
 Each study run writes:
 
 ```txt
@@ -42,6 +73,7 @@ research_runs/<timestamp>_fluoride/
   validated_claims.json
   rejected_claims.json
   sources.json
+  sources.md
   packet.json
   summary.md
   audit_log.jsonl

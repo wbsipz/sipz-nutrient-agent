@@ -23,11 +23,18 @@ For demo mode:
 - Use deterministic claims from `src/sipz_agent/core/extraction.py`.
 - Avoid network calls.
 
-For future live mode:
+For live candidate retrieval:
 
-- Add Firecrawl or literature APIs behind `src/sipz_agent/core/retrieval.py`.
+- Query PubMed with NCBI E-utilities.
+- Query Europe PMC and fetch full-text XML body text when available.
+- Query OpenAlex works.
+- Query Semantic Scholar Graph API.
+- Query Crossref works.
+- If `FIRECRAWL_API_KEY` is set, use Firecrawl search as a supplemental site-search fallback.
 - Keep live retrieval output compatible with `CandidateCitation`.
-- Store retrieval query and source metadata for auditability.
+- Store retrieval query, source metadata, and a `selection_reason` for auditability.
+- Write both structured `sources.json` and human-readable `sources.md` candidate lists.
+- Candidate retrieval is not claim proof; extraction and validation remain separate stages.
 
 ## Files
 

@@ -7,12 +7,17 @@ effects.csv
 validated_claims.json
 rejected_claims.json
 sources.json
+sources.md
 packet.json
 summary.md
 audit_log.jsonl
 ```
 
 `effects.csv` is the primary output for Supabase import.
+
+`sources.json` contains structured candidate-paper metadata, including title, URL, source database, retrieval query, and `selection_reason` explaining why the source was retained as a candidate.
+
+`sources.md` is the human-readable candidate-paper list with link, DOI/PMID where available, retrieval query, and selection reason.
 
 `validated_claims.json` contains quote-level validation evidence linked by `effect_row_id`.
 

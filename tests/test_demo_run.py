@@ -18,6 +18,7 @@ def test_demo_study_writes_artifacts_and_passes_audit(tmp_path) -> None:
         "validated_claims.json",
         "rejected_claims.json",
         "sources.json",
+        "sources.md",
         "packet.json",
         "summary.md",
         "audit_log.jsonl",

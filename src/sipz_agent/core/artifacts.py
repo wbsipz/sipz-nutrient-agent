@@ -53,12 +53,36 @@ def write_effects_csv(path: Path, rows: list[EffectRow]) -> None:
             writer.writerow(row.to_csv_row())
 
 
+def write_sources_markdown(path: Path, sources: list[CandidateCitation]) -> None:
+    lines = ["# Candidate Sources", ""]
+    if not sources:
+        lines.extend(["No candidate sources were collected.", ""])
+    for index, source in enumerate(sources, start=1):
+        lines.append(f"## {index}. {source.title}")
+        lines.append("")
+        if source.url:
+            lines.append(f"- URL: {source.url}")
+        if source.doi:
+            lines.append(f"- DOI: {source.doi}")
+        if source.pmid:
+            lines.append(f"- PMID: {source.pmid}")
+        if source.year:
+            lines.append(f"- Year: {source.year}")
+        lines.append(f"- Source: {source.source}")
+        lines.append(f"- Retrieval query: {source.retrieval_query}")
+        if source.selection_reason:
+            lines.append(f"- Selection reason: {source.selection_reason}")
+        lines.append("")
+    path.write_text("\n".join(lines), encoding="utf-8")
+
+
 def write_study_artifacts(out_dir: str | Path, run_id: str, artifacts: StudyArtifacts) -> Path:
     run_dir = Path(out_dir).resolve() / run_id
     run_dir.mkdir(parents=True, exist_ok=True)
 
     write_json(run_dir / "packet.json", artifacts.packet.model_dump(mode="json"))
     write_json(run_dir / "sources.json", model_dump_jsonable(artifacts.sources))
+    write_sources_markdown(run_dir / "sources.md", artifacts.sources)
     write_json(run_dir / "validated_claims.json", model_dump_jsonable(artifacts.validated_claims))
     write_json(run_dir / "rejected_claims.json", model_dump_jsonable(artifacts.rejected_claims))
     write_effects_csv(run_dir / "effects.csv", artifacts.effect_rows)

@@ -5,11 +5,13 @@ from pathlib import Path
 import re
 
 from sipz_agent.core.artifacts import StudyArtifacts, write_study_artifacts
+from sipz_agent.core.config import resolve_model_config
 from sipz_agent.core.extraction import extract_claims
+from sipz_agent.core.models import create_llm_provider
 from sipz_agent.core.retrieval import find_candidate_papers
 from sipz_agent.core.synthesis import build_effect_rows
 from sipz_agent.core.validation import validate_claim
-from sipz_agent.schemas.artifacts import Packet, PacketCounts, PacketInput, StudyDepth
+from sipz_agent.schemas.artifacts import Packet, PacketCounts, PacketInput, PacketModel, StudyDepth
 
 
 class StudyResult:
@@ -32,9 +34,21 @@ def run_study(
     depth: StudyDepth,
     demo: bool,
     out_dir: str | Path,
+    provider: str | None = None,
+    model: str | None = None,
 ) -> StudyResult:
+    model_config = resolve_model_config(provider=provider, model=model)
+    _llm_provider = create_llm_provider(model_config)
     created_at = datetime.now(UTC).isoformat()
-    audit_events = [{"ts": created_at, "event": "study_started", "nutrient": nutrient_name}]
+    audit_events = [
+        {
+            "ts": created_at,
+            "event": "study_started",
+            "nutrient": nutrient_name,
+            "model_provider": model_config.provider,
+            "model_name": model_config.model_name,
+        }
+    ]
 
     found = find_candidate_papers(nutrient_name=nutrient_name, depth=depth, demo=demo)
     claims = extract_claims(
@@ -69,6 +83,7 @@ def run_study(
     packet = Packet(
         run_id=run_id,
         input=PacketInput(nutrient_name=found.normalized_nutrient_name, depth=depth, demo=demo),
+        model=PacketModel(provider=model_config.provider, model_name=model_config.model_name),
         status="completed",
         created_at=created_at,
         completed_at=completed_at,

@@ -10,5 +10,6 @@ class CandidateCitation(BaseModel):
     year: int | None = None
     source: str = Field(min_length=1)
     retrieval_query: str = Field(min_length=1)
+    selection_reason: str | None = None
     abstract: str | None = None
     body_text: str | None = None

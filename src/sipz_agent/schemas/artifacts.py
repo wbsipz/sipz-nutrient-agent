@@ -19,9 +19,15 @@ class PacketCounts(BaseModel):
     effect_rows: int = Field(ge=0)
 
 
+class PacketModel(BaseModel):
+    provider: str = Field(min_length=1)
+    model_name: str = Field(min_length=1)
+
+
 class Packet(BaseModel):
     run_id: str = Field(min_length=1)
     input: PacketInput
+    model: PacketModel
     status: Literal["completed", "failed"]
     created_at: str
     completed_at: str
