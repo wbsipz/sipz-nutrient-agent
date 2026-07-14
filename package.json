@@ -1,0 +1,74 @@
+{
+  "name": "sipz-nutrient-agent",
+  "version": "1.0.0",
+  "description": "Auditable literature-research agent for human health effects of orally consumed nutrients, bioactives, botanicals, and ingredients.",
+  "bin": {
+    "sipz-nutrient": "bin/sipz-nutrient.js"
+  },
+  "files": [
+    "agent-home/AGENTS.md",
+    "agent-home/BLUEPRINT.md",
+    "agent-home/SYSTEM.md",
+    "agent-home/extensions",
+    "agent-home/sessions/.gitkeep",
+    "agent-home/settings.json",
+    "agent-home/skills",
+    "bin",
+    "docs",
+    "examples",
+    "python/examples",
+    "python/scripts",
+    "python/src",
+    "python/tests",
+    "!python/**/__pycache__",
+    "!python/**/*.pyc",
+    "scripts",
+    "src",
+    "tsconfig.json",
+    "workspace/extracted/.gitkeep",
+    "workspace/notes/.gitkeep",
+    "workspace/reports/.gitkeep",
+    "workspace/sources/.gitkeep",
+    ".env.example",
+    "pyproject.toml",
+    "uv.lock"
+  ],
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "setup": "node scripts/setup.mjs",
+    "tui": "node bin/sipz-nutrient.js",
+    "typecheck": "tsc --noEmit",
+    "test:python": "uv run pytest",
+    "test": "npm run typecheck && npm run test:python"
+  },
+  "keywords": [
+    "agent",
+    "literature-review",
+    "nutrition",
+    "retrieval",
+    "evidence",
+    "quote-grounding",
+    "pi-agent"
+  ],
+  "author": "Sipz",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wbsipz/sipz-nutrient-agent.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wbsipz/sipz-nutrient-agent/issues"
+  },
+  "homepage": "https://github.com/wbsipz/sipz-nutrient-agent#readme",
+  "type": "module",
+  "dependencies": {
+    "@earendil-works/pi-coding-agent": "^0.80.3",
+    "dotenv": "^17.4.2",
+    "typebox": "^1.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "tsx": "^4.23.0",
+    "typescript": "^7.0.2"
+  }
+}

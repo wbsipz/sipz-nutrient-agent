@@ -1,0 +1,22 @@
+{
+  "defaultModelProvider": "deepseek",
+  "defaultModelId": "deepseek-v4-pro",
+  "defaultWorkerModelProvider": "deepseek",
+  "defaultWorkerModelId": "deepseek-v4-flash",
+  "defaultOrchestratorThinking": "medium",
+  "workspaceRoot": "workspace",
+  "retrievalTargetPapers": 25,
+  "deepRetrievalTargetPapers": 40,
+  "maxValidationAttempts": 3,
+  "validatorExcludesSections": [
+    "title",
+    "abstract",
+    "conclusion",
+    "references"
+  ],
+  "acceptedEvidenceRequiresQuote": true,
+  "finalOutputDir": "workspace/reports",
+  "scratchOutputDir": "workspace/notes",
+  "lastChangelogVersion": "0.80.3",
+  "theme": "dark"
+}
