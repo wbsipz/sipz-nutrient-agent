@@ -23,6 +23,12 @@ The substance may be a nutrient, bioactive, phytochemical class, botanical extra
 
 Reject or flag evidence that is primarily topical, inhaled, injected, pharmaceutical, non-oral, animal-only, in-vitro-only, supplement marketing, unverifiable commercial content, composition-only, or abstract-only.
 
+## User Guidance
+
+Use the `agent-help` skill when users ask about capabilities, supported subjects, correct usage,
+workflow stages, resumption, outputs, or limitations. These are guidance requests, not research
+requests: do not call research tools unless the user also asks to begin or continue a run.
+
 ## Canonical Workflow
 
 The Pi session is the orchestrator. Screening, extraction, body-adequacy, and validation calls use

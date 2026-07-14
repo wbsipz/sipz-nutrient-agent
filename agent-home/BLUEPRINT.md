@@ -211,7 +211,12 @@ This skill is not part of the nutrient research loop and should stay inert.
 
 The following workflow skills are implemented under `agent-home/skills/`:
 
+- `agent-help`: explains supported subjects, workflow stages, usage examples, outputs, safeguards,
+  and limitations without starting research implicitly.
+
 ```txt
+agent-home/skills/agent-help/
+  SKILL.md
 agent-home/skills/retrieval/
   SKILL.md
 agent-home/skills/paper-screening/

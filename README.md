@@ -216,6 +216,7 @@ claims, retrieval coverage, failures, and model provenance.
 
 Workflow guidance lives in `agent-home/skills/`:
 
+- `agent-help`
 - `retrieval`
 - `paper-screening`
 - `claim-extraction`
